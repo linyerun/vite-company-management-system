@@ -18,6 +18,7 @@
 <script setup lang="ts">
 import {onMounted, ref, onBeforeMount} from 'vue'
 import {getContractsState} from '../../api/contract'
+import {errorInfo} from "../../api/error";
 
 interface IContractState {
   contractId: number
@@ -36,7 +37,7 @@ const tableData = ref<IContractData[]>([])
 
 // 创造新的合同状态
 const dealTableData = (contractStates: IContractState[]) => {
-  tableData.value = [] //滞空
+  tableData.value = [] //去除之前的数据
   for (let i = 0; i < contractStates.length; i++) {
     const state = contractStates[i].contractState
     tableData.value.push({
@@ -55,32 +56,28 @@ const dealContractStates = (states: number[]) => {
   })
 }
 // 从后端获取数据
-const getData = () => {
+const getData = (f: Function) => {
   getContractsState().then(res => {
     if (res.code !== 200) {
+      errorInfo(res.msg)
       return
     }
     contractStates.value = res.data as IContractState[]
+    f() // 执行函数
+    console.log(res.data)
   }).catch(err => {
+    errorInfo('请求出现异常')
     console.log(err)
   })
 }
 
-const getAll = async () => {
-  await getData()
-  dealTableData(contractStates.value)
-}
-const getIng = async () => {
-  await getData()
-  dealTableData(dealContractStates([0, 1]))
-}
-const getEnd = async () => {
-  await getData()
-  dealTableData(dealContractStates([2]))
-}
+// 为什么一定要在then里面才行呢？放出来就在执行onBeforeMount出现问题
+const getAll = () => getData(()=> dealTableData(contractStates.value))
+const getIng = () => getData(()=>dealTableData(dealContractStates([0, 1])))
+const getEnd = () => getData(()=>dealTableData(dealContractStates([2])))
 
 onBeforeMount(() => {
-
+  getAll()
 })
 
 </script>

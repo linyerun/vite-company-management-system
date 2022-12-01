@@ -8,6 +8,10 @@ import Performance from '../components/employee/Performance.vue'
 
 const routes = [
     {
+        path: '/',
+        redirect: '/login'
+    },
+    {
         path: '/emp',
         name: 'EmployeeIndex',
         component: EmployeeIndex,

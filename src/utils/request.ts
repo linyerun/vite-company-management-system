@@ -8,9 +8,17 @@ interface IData {
     data: any
 }
 
-export  const request =(options:any)=> {
+interface IOptions {
+  url?: string
+  method?: string
+  data?: any
+  params?: any
+}
+
+export  const request =(options: IOptions)=> {
   return new Promise<IData>((resolve, reject) => {
-    // create an axios instance
+
+    // 创建一个axios实例
     const service = axios.create({
       baseURL: 'http://localhost:8888/company_sales_management_system',
       timeout: 60000
@@ -52,6 +60,7 @@ export  const request =(options:any)=> {
         return Promise.reject(error)
       }
     )
+
     // 请求处理
     service(options)
       .then((res) => {
