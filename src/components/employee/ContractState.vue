@@ -18,7 +18,7 @@
 <script setup lang="ts">
 import {onMounted, ref, onBeforeMount} from 'vue'
 import {getContractsState} from '../../api/contract'
-import {errorInfo} from "../../api/error";
+import {errorInfo} from "../../api/message";
 
 interface IContractState {
   contractId: number

@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { getEmpSum } from '../../api/contract'
-import {errorInfo} from "../../api/error";
+import {errorInfo} from "../../api/message";
 
 const startTime = ref<string>('')
 const endTime = ref<string>('')
@@ -22,6 +22,10 @@ const sum = ref<number>(0)
 const hiddenSum = ref<boolean>(false)
 
 const searchSum = () => {
+  if (startTime.value.length == 0 || endTime.value.length == 0) {
+    errorInfo("开始时间和结束时间存在未选择问题")
+    return
+  }
   getEmpSum(startTime.value, endTime.value).then(res => {
     if (res.code !== 200) {
       errorInfo(res.msg)

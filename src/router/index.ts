@@ -5,6 +5,8 @@ import StoreIndex from '../components/store/index.vue'
 import Login from '../components/common/login.vue'
 import ContractState from '../components/employee/ContractState.vue'
 import Performance from '../components/employee/Performance.vue'
+import In from '../components/store/In.vue'
+import Out from '../components/store/Out.vue'
 
 const routes = [
     {
@@ -36,7 +38,19 @@ const routes = [
     {
         path: '/store',
         name: 'StoreIndex',
-        component: StoreIndex
+        component: StoreIndex,
+        children: [
+            {
+                path: 'in',
+                name: 'In',
+                component: In
+            },
+            {
+                path: 'out',
+                name: 'Out',
+                component: Out
+            }
+        ]
     },
     {
         path: '/login',

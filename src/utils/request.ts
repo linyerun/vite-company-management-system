@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { errorInfo } from '../api/error'
+import { errorInfo } from '../api/message'
 import router from '../router/index'
 
 interface IData {
@@ -10,7 +10,7 @@ interface IData {
 
 interface IOptions {
   url?: string
-  method?: string
+  method?: 'get' | 'post' | 'put' | 'delete'
   data?: any
   params?: any
 }

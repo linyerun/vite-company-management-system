@@ -17,3 +17,10 @@ export function getEmpSum(startTime: string, endTime: string) {
         }
     })
 }
+
+export function getDeliverMsgByContractId(contractId: number) {
+    return request({
+        url: `/contract/clientInfo/get/${contractId}`,
+        method: 'get'
+    })
+}

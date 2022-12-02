@@ -21,7 +21,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '../../api/login'
-import { errorInfo } from '../../api/error'
+import { errorInfo } from '../../api/message'
 
 interface IUserData {
     token: string
@@ -45,7 +45,7 @@ const loginFunc = () => {
         if(userData.identity === '0') {
             router.push('/emp/contractState')
         } else if (userData.identity === '1') {
-            router.push('/store')
+            router.push('/store/out')
         } else if (userData.identity === '2') {
             router.push('/admin')
         }

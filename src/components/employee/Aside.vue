@@ -1,5 +1,5 @@
 <template>
-  <el-menu :default-openeds="['1']" :default-active="path" router style="width:200px; height: calc(100vh - 50px);"
+  <el-menu :default-openeds="['1']" :default-active="path" router style="width:250px; height: calc(100vh - 50px);"
            class="el-menu-vertical-demo">
     <el-sub-menu index="1">
       <template #title>
