@@ -8,9 +8,9 @@
         </el-icon>
         <span>信息管理</span>
       </template>
-      <el-menu-item index="/customer">客户信息管理</el-menu-item>
-      <el-menu-item index="/salesperson">销售人员管理</el-menu-item>
-      <el-menu-item index="/contract">合同信息管理</el-menu-item>
+      <el-menu-item index="/admin/client">客户信息管理</el-menu-item>
+      <el-menu-item index="/admin/employee">销售人员管理</el-menu-item>
+      <el-menu-item index="/admin/contract">合同信息管理</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="2">
       <template #title>
@@ -29,9 +29,9 @@
         </el-icon>
         <span>销售数据统计</span>
       </template>
-      <el-menu-item index="/customerSales">客户销售额</el-menu-item>
-      <el-menu-item index="/commoditySales">商品销售额</el-menu-item>
-      <el-menu-item index="/totalSales">销售总额</el-menu-item>
+      <el-menu-item index="#">客户销售额</el-menu-item>
+      <el-menu-item index="#">商品销售额</el-menu-item>
+      <el-menu-item index="#">销售总额</el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>
