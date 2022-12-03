@@ -16,8 +16,8 @@
 
 <script setup lang="ts">
 import {Menu as IconMenu} from '@element-plus/icons-vue'
-import { useRoute } from 'vue-router'
-import { ref } from 'vue'
+import {useRoute} from 'vue-router'
+import {ref} from 'vue'
 
 const route = useRoute()
 

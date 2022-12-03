@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import EmployeeIndex from '../components/employee/index.vue'
 import AdminIndex from '../components/admin/index.vue'
 import StoreIndex from '../components/store/index.vue'
@@ -9,67 +9,67 @@ import In from '../components/store/In.vue'
 import Out from '../components/store/Out.vue'
 
 const routes = [
-    {
-        path: '/',
-        redirect: '/login'
-    },
-    {
-        path: '/emp',
-        name: 'EmployeeIndex',
-        component: EmployeeIndex,
-        children: [
-            {
-                path: 'contractState',
-                name: 'ContractState',
-                component: ContractState
-            },
-            {
-                path: 'performance',
-                name: 'Performance',
-                component: Performance
-            }
-        ]
-    },
-    {
-        path: '/admin',
-        name: 'AdminIndex',
-        component: AdminIndex
-    },
-    {
-        path: '/store',
-        name: 'StoreIndex',
-        component: StoreIndex,
-        children: [
-            {
-                path: 'in',
-                name: 'In',
-                component: In
-            },
-            {
-                path: 'out',
-                name: 'Out',
-                component: Out
-            }
-        ]
-    },
-    {
-        path: '/login',
-        name: 'Login',
-        component: Login
-    }
+  {
+    path: '/',
+    redirect: '/login'
+  },
+  {
+    path: '/emp',
+    name: 'EmployeeIndex',
+    component: EmployeeIndex,
+    children: [
+      {
+        path: 'contractState',
+        name: 'ContractState',
+        component: ContractState
+      },
+      {
+        path: 'performance',
+        name: 'Performance',
+        component: Performance
+      }
+    ]
+  },
+  {
+    path: '/admin',
+    name: 'AdminIndex',
+    component: AdminIndex
+  },
+  {
+    path: '/store',
+    name: 'StoreIndex',
+    component: StoreIndex,
+    children: [
+      {
+        path: 'in',
+        name: 'In',
+        component: In
+      },
+      {
+        path: 'out',
+        name: 'Out',
+        component: Out
+      }
+    ]
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  }
 ]
 
 const router = createRouter({
-    history: createWebHistory(),
-    routes: routes
+  history: createWebHistory(),
+  routes: routes
 })
 
 // 做一个页面跳转守门员
 router.beforeEach((to, from, next) => {
-    if (to.path === '/login') return next()
-    const token = sessionStorage.getItem('token')
-    if (token === null) return next('/login')
-    next() // 允许通过
+  if (to.path === '/login') return next()
+  const token = sessionStorage.getItem('token')
+  if (token === null) return next('/login')
+  next() // 允许通过
 })
 
 export default router

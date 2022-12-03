@@ -72,9 +72,9 @@ const getData = (f: Function) => {
 }
 
 // 为什么一定要在then里面才行呢？放出来就在执行onBeforeMount出现问题
-const getAll = () => getData(()=> dealTableData(contractStates.value))
-const getIng = () => getData(()=>dealTableData(dealContractStates([0, 1])))
-const getEnd = () => getData(()=>dealTableData(dealContractStates([2])))
+const getAll = () => getData(() => dealTableData(contractStates.value))
+const getIng = () => getData(() => dealTableData(dealContractStates([0, 1])))
+const getEnd = () => getData(() => dealTableData(dealContractStates([2])))
 
 onBeforeMount(() => {
   getAll()

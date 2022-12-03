@@ -80,11 +80,11 @@
 </template>
 
 <script setup lang="ts">
-import { Timer, View, CircleCloseFilled } from '@element-plus/icons-vue'
-import { ref, onBeforeMount } from 'vue'
-import { getOrderList, updateState } from '../../api/purchase_order'
+import {Timer, View, CircleCloseFilled} from '@element-plus/icons-vue'
+import {ref, onBeforeMount} from 'vue'
+import {getOrderList, updateState} from '../../api/purchase_order'
 import {errorInfo, successInfo} from '../../api/message'
-import { getGoodsInfoById } from '../../api/goods'
+import {getGoodsInfoById} from '../../api/goods'
 
 interface IListData {
   id: number
@@ -94,6 +94,7 @@ interface IListData {
   goodsCount: number
   state: number
 }
+
 interface IGoodsInfo {
   id: number
   createdAt: string
@@ -103,6 +104,7 @@ interface IGoodsInfo {
   goodsCount: number
   unitPrice: number
 }
+
 interface IDataInfo {
   purchaseOrderId: number
   unitPrice: number
@@ -170,7 +172,7 @@ const updateOrder = (goodsId: number, goodsCount: number, f: Function) => {
 }
 // 展示数据
 const showGoodsInfo = (goodsId: number) => {
-  getGoodsInfo(goodsId, ()=>visibleGoodsInfo.value = true)
+  getGoodsInfo(goodsId, () => visibleGoodsInfo.value = true)
 }
 const showForm = (goodsIdVar: number, goodsCountVar: number, purchaseOrderId: number) => {
   goodsId = goodsIdVar
@@ -184,7 +186,7 @@ const cancel = () => {
 }
 const sure = () => {
   updateOrder(goodsId, goodsCount,
-      ()=>getInfoList(()=> {
+      () => getInfoList(() => {
         reset()
         formVisible.value = false
       }))
@@ -200,8 +202,9 @@ const reset = () => {
 }
 
 // 周期函数
-onBeforeMount(()=>{
-  getInfoList(()=>{})
+onBeforeMount(() => {
+  getInfoList(() => {
+  })
 })
 
 </script>
@@ -210,6 +213,7 @@ onBeforeMount(()=>{
 .container {
   width: 100%;
 }
+
 .table {
   width: 100%;
 }

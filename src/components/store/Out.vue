@@ -227,7 +227,9 @@ const showGoodsInfo = (goodId: number) => {
   visibleGoodsInfo.value = true
 }
 const showCliInfo = (contractId: number) => {
-  getClientInfo(contractId, ()=>{visibleCliInfo.value = true})
+  getClientInfo(contractId, () => {
+    visibleCliInfo.value = true
+  })
 }
 const showForm = (dispatchBillIdVar: number, contractIdVar: number, goodsIdVar: number) => {
   dispatchBillId = dispatchBillIdVar
@@ -240,14 +242,15 @@ const cancel = () => {
 }
 const sure = () => {
   // 使用嵌套的方式解决
-  getClientInfo(contractId,()=>{
+  getClientInfo(contractId, () => {
     postData.value.clientEmail = cliInfo.value.email
-    postInfo(dispatchBillId, postData.value, ()=>getList(()=>formVisible.value = false))
+    postInfo(dispatchBillId, postData.value, () => getList(() => formVisible.value = false))
   })
 }
 
 onBeforeMount(() => {
-  getList(()=>{})
+  getList(() => {
+  })
 })
 
 </script>

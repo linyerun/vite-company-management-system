@@ -6,14 +6,14 @@
       <el-button type="primary" @click="searchSum">查询</el-button>
     </div>
     <div class="money">
-      <h1 v-if="hiddenSum">您的销售业绩为:   {{sum}}￥</h1>
+      <h1 v-if="hiddenSum">您的销售业绩为: {{ sum }}￥</h1>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { getEmpSum } from '../../api/contract'
+import {ref} from 'vue'
+import {getEmpSum} from '../../api/contract'
 import {errorInfo} from "../../api/message";
 
 const startTime = ref<string>('')
@@ -31,7 +31,7 @@ const searchSum = () => {
       errorInfo(res.msg)
       return
     }
-    const obj = res.data as {sum: number}
+    const obj = res.data as { sum: number }
     sum.value = obj.sum
     hiddenSum.value = true
   }).catch(err => {

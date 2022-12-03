@@ -1,9 +1,9 @@
 <template>
-    <Header :userType="'销售人员'"/>
-    <div style="display: flex">
-        <Aside />
-        <router-view/>
-    </div>
+  <Header :userType="'销售人员'"/>
+  <div style="display: flex">
+    <Aside/>
+    <router-view/>
+  </div>
 </template>
 
 <script setup lang="ts">
