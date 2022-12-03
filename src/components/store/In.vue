@@ -61,7 +61,7 @@
     </div>
   </el-dialog>
   <!--表单填写-->
-  <el-dialog v-model="formVisible" title="填写快递单号">
+  <el-dialog v-model="formVisible" title="填写进货信息">
     <el-form :model="dataInfo">
       <el-form-item label=货物单价 :label-width="'140px'">
         <el-input v-model="dataInfo.unitPrice" autocomplete="off"/>

@@ -16,7 +16,7 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted, ref, onBeforeMount} from 'vue'
+import {ref, onBeforeMount} from 'vue'
 import {getContractsState} from '../../api/contract'
 import {errorInfo} from "../../api/message";
 
@@ -49,7 +49,7 @@ const dealTableData = (contractStates: IContractState[]) => {
 }
 // 将满足要求的原始合同状态返回
 const dealContractStates = (states: number[]) => {
-  return contractStates.value.filter((curVal, idx, arr) => {
+  return contractStates.value.filter((curVal) => {
     for (let i = 0; i < states.length; i++)
       if (curVal.contractState === states[i]) return true
     return false

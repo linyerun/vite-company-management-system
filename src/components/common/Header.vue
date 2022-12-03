@@ -1,7 +1,7 @@
 <template>
   <div style="height:50px; line-height: 50px; border-bottom: 1px solid #ccc; display: flex;">
     <div style="width:300px; padding-left: 30px; font-weight: bold; color: dodgerblue;">
-      公司销售管理系统 - {{ userType }}专用
+      公司销售管理系统 - {{ userType }}操作界面
     </div>
     <div style="flex: 1;"></div>
     <div style="width:100px;">
