@@ -47,7 +47,7 @@ const loginFunc = () => {
     } else if (userData.identity === '1') {
       router.push('/store/out')
     } else if (userData.identity === '2') {
-      router.push('/admin')
+      router.push('/admin/client')
     }
   }).catch(err => {
     console.log(err)

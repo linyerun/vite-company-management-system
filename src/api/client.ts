@@ -1,7 +1,6 @@
 import request from '../utils/request'
 
 interface IClientInfo {
-  address: string
   clientName: string
   email: string
   phoneNumber: string
@@ -22,6 +21,14 @@ export function updateClient(cliInfo: IClientInfo, clientId: number) {
   return request({
     url: `client/update/${clientId}`,
     method: 'put',
+    data: cliInfo
+  })
+}
+
+export function addClient(cliInfo: IClientInfo) {
+  return request({
+    url: '/client/add',
+    method: 'post',
     data: cliInfo
   })
 }
