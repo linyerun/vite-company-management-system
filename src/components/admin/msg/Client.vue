@@ -17,16 +17,16 @@
     </el-table>
   </div>
   <!--表单填写-->
-  <el-dialog v-model="formVisible" title="修改客户信息">
+  <el-dialog v-model="formVisible" title="客户信息填写">
     <el-form :model="clientData">
       <el-form-item label="电话号码" :label-width="'140px'">
-        <el-input v-model="clientData.phoneNumber" autocomplete="off"/>
+        <el-input placeholder="请输入客户电话号码" v-model="clientData.phoneNumber" autocomplete="off"/>
       </el-form-item>
       <el-form-item label="电子邮件" :label-width="'140px'">
-        <el-input v-model="clientData.email" autocomplete="off"/>
+        <el-input placeholder="请输入客户电子邮件" v-model="clientData.email" autocomplete="off"/>
       </el-form-item>
       <el-form-item label="客户姓名" :label-width="'140px'">
-        <el-input v-model="clientData.clientName" autocomplete="off"/>
+        <el-input placeholder="请输入客户姓名" v-model="clientData.clientName" autocomplete="off"/>
       </el-form-item>
     </el-form>
     <template #footer>

@@ -6,7 +6,7 @@
       <el-button type="primary" @click="searchSum">查询</el-button>
     </div>
     <div class="money">
-      <h1 v-if="hiddenSum">您的销售业绩为: {{ sum }}￥</h1>
+      <h1 v-if="hiddenSum">您的销售业绩为: ￥{{ sum }}</h1>
     </div>
   </div>
 </template>
