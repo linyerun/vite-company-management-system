@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <el-table :data="GoodsList" style="width: 100%">
+    <el-table :data="GoodsList" border style="width: 100%">
       <el-table-column prop="id" label="ID" />
       <el-table-column prop="goodsName" label="货物名称" />
       <el-table-column prop="goodsCount" label="货物库存" />
@@ -77,6 +77,5 @@ onBeforeMount(()=>{
 <style scoped>
 .container {
   width: 100%;
-  padding: 10px;
 }
 </style>

@@ -37,3 +37,10 @@ export function updateEmployee(employeeUpdateData: IEmployeeUpdateData) {
     data: employeeUpdateData
   })
 }
+
+export function getEmployeeById(empId: number) {
+  return request({
+    url: `/user/getEmployeeById/${empId}`,
+    method: 'get'
+  })
+}

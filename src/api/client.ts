@@ -32,3 +32,10 @@ export function addClient(cliInfo: IClientInfo) {
     data: cliInfo
   })
 }
+
+export function getClientById(cliId: number) {
+  return request({
+    url: `/client/getClientById/${cliId}`,
+    method: 'get'
+  })
+}

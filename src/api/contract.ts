@@ -42,3 +42,10 @@ export function getSumByClientId(clientId: number) {
         method: 'get'
     })
 }
+
+export function getAllContract() {
+    return request({
+        url: '/contract/getAllContract',
+        method: 'get'
+    })
+}
