@@ -6,3 +6,17 @@ export function getGoodsInfoById(goodId: number) {
     method: 'get'
   })
 }
+
+export function getAllGoods() {
+  return request({
+    url: '/goods/getAll',
+    method: 'get'
+  })
+}
+
+export function getGoodsSumById(goodsId: number) {
+  return request({
+    url: `/goods/getSum/${goodsId}`,
+    method: 'get'
+  })
+}

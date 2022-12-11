@@ -29,9 +29,8 @@
         </el-icon>
         <span>销售数据统计</span>
       </template>
-      <el-menu-item index="#">客户销售额</el-menu-item>
-      <el-menu-item index="#">商品销售额</el-menu-item>
-      <el-menu-item index="#">销售总额</el-menu-item>
+      <el-menu-item index="/admin/sum">销售的总额查询</el-menu-item>
+      <el-menu-item index="/admin/goodsSum">商品销售额查询</el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>

@@ -21,7 +21,7 @@
 import {ref} from 'vue'
 import {useRouter} from 'vue-router'
 import {login} from '../../api/login'
-import {errorInfo} from '../../api/message'
+import {errorInfo, successInfo} from '../../api/message'
 
 interface IUserData {
   token: string
@@ -49,6 +49,7 @@ const loginFunc = () => {
     } else if (userData.identity === '2') {
       router.push('/admin/client')
     }
+    successInfo('登录成功')
   }).catch(err => {
     console.log(err)
     errorInfo('登录出现异常!')

@@ -12,6 +12,7 @@
       <el-table-column label="操作">
         <template #default="{ row }">
           <el-button size="small" @click="showUpdateClientForm(row)" type="success">修改</el-button>
+          <el-button size="small" @click="showClientSum(row.id)" type="danger">销售总额</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -56,12 +57,17 @@
       </span>
     </template>
   </el-dialog>
+
+  <el-dialog v-model="clientSumVisible">
+    <h1>客户销售总额：￥{{clientSum}}</h1>
+  </el-dialog>
 </template>
 
 <script setup lang="ts">
 import {ref, onBeforeMount} from 'vue'
 import {getClients, updateClient, addClient} from '../../../api/client'
 import {errorInfo, successInfo} from '../../../api/message'
+import { getSumByClientId } from '../../../api/contract'
 
 interface IClient {
   id: number
@@ -81,8 +87,10 @@ const clientData = ref<IClient>({
   email: '',
   clientName: ''
 })
+const clientSum = ref<number>(0)
 const formVisible = ref<boolean>(false)
 const searchFormVisible = ref<boolean>(false)
+const clientSumVisible = ref<boolean>(false)
 
 // 后台接口封装
 const getClientsInfo = (f: Function, phoneNumber?: string, email?: string, clientName?: string) => {
@@ -185,6 +193,19 @@ const searchCancel = () => {
     clientName: ''
   }
   searchFormVisible.value = false
+}
+const showClientSum = (clientId: number) => {
+  getSumByClientId(clientId).then(res => {
+    if (res.code !== 200) {
+      errorInfo(res.msg)
+      return
+    }
+    clientSum.value = (res.data as {sum: number}).sum
+    clientSumVisible.value = true
+  }).catch(err => {
+    errorInfo('请求发送失败')
+    console.log(err)
+  })
 }
 
 onBeforeMount(()=>{

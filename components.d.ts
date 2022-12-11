@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     Admin: typeof import('./src/components/admin/index.vue')['default']
     Aside: typeof import('./src/components/admin/Aside.vue')['default']
     Client: typeof import('./src/components/admin/msg/Client.vue')['default']
+    ClientSum: typeof import('./src/components/admin/data/ClientSum.vue')['default']
     Contract: typeof import('./src/components/admin/msg/Contract.vue')['default']
     ContractState: typeof import('./src/components/employee/ContractState.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -34,6 +35,7 @@ declare module '@vue/runtime-core' {
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ElTag: typeof import('element-plus/es')['ElTag']
     Employee: typeof import('./src/components/employee/index.vue')['default']
+    GoodsSum: typeof import('./src/components/admin/data/GoodsSum.vue')['default']
     Header: typeof import('./src/components/common/Header.vue')['default']
     In: typeof import('./src/components/store/In.vue')['default']
     Login: typeof import('./src/components/common/login.vue')['default']
@@ -42,5 +44,6 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Store: typeof import('./src/components/store/index.vue')['default']
+    Sum: typeof import('./src/components/admin/data/Sum.vue')['default']
   }
 }

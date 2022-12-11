@@ -24,3 +24,21 @@ export function getDeliverMsgByContractId(contractId: number) {
         method: 'get'
     })
 }
+
+export function getCompanySumByTime(startTime: string, endTime: string) {
+    return request({
+        url: '/contract/getSumByTime',
+        method: 'get',
+        params: {
+            startTime,
+            endTime
+        }
+    })
+}
+
+export function getSumByClientId(clientId: number) {
+    return request({
+        url: `/contract/getSumByClientId/${clientId}`,
+        method: 'get'
+    })
+}
