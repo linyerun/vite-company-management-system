@@ -65,18 +65,9 @@
 
 <script setup lang="ts">
 import {ref, onBeforeMount} from 'vue'
-import {getClients, updateClient, addClient} from '../../../api/client'
+import {getClients, updateClient, addClient, IClient} from '../../../api/client'
 import {errorInfo, successInfo} from '../../../api/message'
 import { getSumByClientId } from '../../../api/contract'
-
-interface IClient {
-  id: number
-  createdAt: string
-  updatedAt: string
-  phoneNumber: string
-  email: string
-  clientName: string
-}
 
 const clientsInfo = ref<IClient[]>([])
 const clientData = ref<IClient>({

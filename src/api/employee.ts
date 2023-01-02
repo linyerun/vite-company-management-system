@@ -1,5 +1,16 @@
 import request from '../utils/request'
 
+export interface IEmployee {
+  id: number
+  createdAt: string
+  updatedAt: string
+  username: string
+  phoneNumber: string
+  email: string
+  identity: number
+  employeeName: string
+}
+
 export interface IEmployeeData {
   email: string
   employeeName: string

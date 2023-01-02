@@ -39,3 +39,19 @@ export function getClientById(cliId: number) {
     method: 'get'
   })
 }
+
+export function getAllClients() {
+  return request({
+    url: '/client/getClients',
+    method: 'get'
+  })
+}
+
+export interface IClient {
+  id: number
+  createdAt: string
+  updatedAt: string
+  phoneNumber: string
+  email: string
+  clientName: string
+}

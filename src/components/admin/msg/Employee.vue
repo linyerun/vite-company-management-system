@@ -86,20 +86,9 @@
 </template>
 
 <script setup lang="ts">
-import {getEmployees, postEmployee, updateEmployee, IEmployeeData, IEmployeeUpdateData} from '../../../api/employee'
+import {getEmployees, postEmployee, updateEmployee, IEmployeeData, IEmployeeUpdateData, IEmployee} from '../../../api/employee'
 import {errorInfo, successInfo} from '../../../api/message'
 import {ref, onBeforeMount} from 'vue'
-
-interface IEmployee {
-  id: number
-  createdAt: string
-  updatedAt: string
-  username: string
-  phoneNumber: string
-  email: string
-  identity: number
-  employeeName: string
-}
 
 // 员工列表
 const employeeList = ref<IEmployee[]>([])

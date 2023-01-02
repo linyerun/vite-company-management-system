@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     Client: typeof import('./src/components/admin/msg/Client.vue')['default']
     ClientSum: typeof import('./src/components/admin/data/ClientSum.vue')['default']
     Contract: typeof import('./src/components/admin/msg/Contract.vue')['default']
+    ContractRecord: typeof import('./src/components/admin/msg/ContractRecord.vue')['default']
     ContractState: typeof import('./src/components/employee/ContractState.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']

@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div class="btn">
-      <el-button type="danger">合同录入</el-button>
-      <el-button type="warning">合同查询</el-button>
+      <el-button type="danger" @click="$router.push('/admin/contractRecord')">合同录入</el-button>
+      <el-button type="warning" @click="stateVisible = true">合同查询</el-button>
     </div>
     <el-table :data="contractList" height="590px" border style="width: 100%">
       <el-table-column prop="id" label="ID" />
-      <el-table-column prop="createdAt" label="创建时间" />
+      <el-table-column prop="createdAt" label="创建时间" width="220px" />
       <el-table-column prop="totalAmount" label="金额" />
       <el-table-column label="合同图片">
         <template #default="{ row }">
@@ -20,10 +20,16 @@
           <el-tag v-else type="success">合同执行完毕</el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="信息查看操作">
+      <el-table-column label="信息查看" width="300px">
         <template #default="{row}">
-          <el-button @click="showEmpInfo(row.userId)" type="danger" size="small">销售员工信息</el-button>
-          <el-button @click="showCliInfo(row.clientId)" type="success" size="small">客户信息</el-button>
+          <el-button @click="showEmpInfo(row.userId)" type="danger" size="default">销售员工信息</el-button>
+          <el-button @click="showCliInfo(row.clientId)" type="success" size="default">客户信息</el-button>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作">
+        <template #default="{row}">
+          <el-button v-if="row.contractState === 0" type="primary" size="small">修改</el-button>
+          <el-tag v-else type="danger">不可修改</el-tag>
         </template>
       </el-table-column>
     </el-table>
@@ -58,6 +64,22 @@
         <el-input placeholder="请输入客户姓名" v-model="cliInfo.clientName" autocomplete="off"/>
       </el-form-item>
     </el-form>
+  </el-dialog>
+  <!--查询合同-->
+  <el-dialog v-model="stateVisible" title="查询合同">
+    <el-form-item :model="contractState" label="合同查询条件选项">
+      <el-select v-model="contractState" placeholder="请做出你的选择" default-first-option>
+        <el-option label="全部合同" :value="{value: -1, label: '全部合同'}" />
+        <el-option label="尚未付款" :value="{value: 0, label: '尚未付款'}" />
+        <el-option label="已经付款" :value="{value: 1, label: '已经付款'}" />
+        <el-option label="合同结束" :value="{value: 2, label: '合同结束'}" />
+      </el-select>
+    </el-form-item>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button type="primary" @click="searchContract">确定</el-button>
+      </span>
+    </template>
   </el-dialog>
 </template>
 
@@ -116,8 +138,10 @@ const cliInfo = ref<IClient>({
   "email": "",
   "clientName": ""
 })
+const contractState = ref<{value: number, label: string}>({value: -1, label: '全部合同'})
 const cliVisible = ref<boolean>(false)
 const empVisible = ref<boolean>(false)
+const stateVisible = ref(false)
 
 function getContractList(f: Function) {
   getAllContract().then(res => {
@@ -168,6 +192,16 @@ function showCliInfo(cliId: number) {
   getCliInfoById(cliId, ()=>{
     cliVisible.value = true
   })
+}
+function searchContract() {
+  if (contractState.value.value === -1) {
+    getContractList(()=>{stateVisible.value = false})
+  }else {
+    getContractList(()=>{
+      contractList.value = contractList.value.filter(val => val.contractState === contractState.value.value)
+      stateVisible.value = false
+    })
+  }
 }
 
 onBeforeMount(()=>{

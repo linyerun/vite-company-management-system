@@ -1,5 +1,18 @@
 import request from "../utils/request"
 
+export interface IContractData {
+    clientId: number
+    contractPic: string
+    goodsInfos: IGoodsInfo[]
+    totalAmount: number
+    userId: number
+}
+
+export interface IGoodsInfo {
+    goodsId: number
+    purchasingCount: number
+}
+
 export function getContractsState() {
     return request({
         method: 'get',
@@ -47,5 +60,13 @@ export function getAllContract() {
     return request({
         url: '/contract/getAllContract',
         method: 'get'
+    })
+}
+
+export function postContract(contract: IContractData) {
+    return request({
+        url: '/contract/record',
+        method: 'post',
+        data: contract
     })
 }

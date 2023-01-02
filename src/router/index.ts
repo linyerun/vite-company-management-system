@@ -11,8 +11,8 @@ import Client from '../components/admin/msg/Client.vue'
 import Employee from '../components/admin/msg/Employee.vue'
 import Contract from '../components/admin/msg/Contract.vue'
 import Sum from '../components/admin/data/Sum.vue'
-import ClientSum from '../components/admin/data/ClientSum.vue'
 import GoodsSum from '../components/admin/data/GoodsSum.vue'
+import ContractRecord from '../components/admin/msg/ContractRecord.vue'
 
 const routes = [
   {
@@ -87,6 +87,11 @@ const routes = [
         path: 'goodsSum',
         name: 'GoodsSum',
         component: GoodsSum
+      },
+      {
+        path: 'contractRecord',
+        name: 'ContractRecord',
+        component: ContractRecord
       }
     ]
   }
