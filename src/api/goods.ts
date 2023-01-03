@@ -7,6 +7,13 @@ export function getGoodsInfoById(goodId: number) {
   })
 }
 
+export interface IGoods {
+  id: number
+  goodsName: string
+  goodsCount: number
+  unitPrice: number
+}
+
 export function getAllGoods() {
   return request({
     url: '/goods/getAll',

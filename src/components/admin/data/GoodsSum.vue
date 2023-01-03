@@ -18,16 +18,9 @@
 </template>
 
 <script setup lang="ts">
-import { getAllGoods, getGoodsSumById } from '../../../api/goods'
+import { getAllGoods, getGoodsSumById, IGoods } from '../../../api/goods'
 import { errorInfo } from '../../../api/message'
 import { ref, onBeforeMount } from 'vue'
-
-interface IGoods {
-  id: number
-  goodsName: string
-  goodsCount: number
-  unitPrice: number
-}
 
 const GoodsList = ref<IGoods[]>([])
 const goodsSumVisible = ref<boolean>(false)
