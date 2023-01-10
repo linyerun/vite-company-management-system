@@ -10,7 +10,7 @@
       <el-table-column prop="totalAmount" label="金额" />
       <el-table-column label="合同图片">
         <template #default="{ row }">
-          <el-image style="width: 100px; height: 100px" :src="row.contractPic" />
+          <el-image @click="showBigImg(row.contractPic)" style="width: 100px; height: 100px" :src="row.contractPic" />
         </template>
       </el-table-column>
       <el-table-column label="合同状态">
@@ -28,7 +28,7 @@
       </el-table-column>
       <el-table-column label="操作">
         <template #default="{row}">
-          <el-button v-if="row.contractState === 0" type="primary" size="small">修改</el-button>
+          <el-button @click="showContractUpdate(row)" v-if="row.contractState === 0" type="primary" size="small">修改</el-button>
           <el-tag v-else type="danger">不可修改</el-tag>
         </template>
       </el-table-column>
@@ -81,68 +81,100 @@
       </span>
     </template>
   </el-dialog>
+  <!--修改合同-->
+  <el-dialog v-model="updateVisible" title="修改合同">
+    <el-form :model="contract">
+      <el-form-item label="客户姓名" :label-width="'200px'">
+        <el-select v-model="contract.clientId" >
+          <el-option v-for="item in clientList" :key="item.id" :label="item.clientName" :value="item.id"/>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="销售员工" :label-width="'200px'">
+        <el-select v-model="contract.userId">
+          <el-option v-for="item in employeeList" :key="item.id" :label="item.employeeName" :value="item.id"/>
+        </el-select>
+      </el-form-item>
+      <!--<el-form-item label="合同照片" :label-width="'200px'">-->
+      <!--  <el-upload-->
+      <!--      class="avatar-uploader"-->
+      <!--      :action=" baseURL+'/pic/upload' "-->
+      <!--      :show-file-list="false"-->
+      <!--      :on-success="handleAvatarSuccess"-->
+      <!--      :before-upload="beforeAvatarUpload">-->
+      <!--    <img v-if="contract.contractPic" :src="contract.contractPic" class="avatar"  alt=""/>-->
+      <!--    <el-icon v-else class="avatar-uploader-icon">-->
+      <!--      <Plus />-->
+      <!--    </el-icon>-->
+      <!--  </el-upload>-->
+      <!--</el-form-item>-->
+    </el-form>
+    <!--<el-table :data="goodsData" style="width: 100%" max-height="250">-->
+    <!--  <el-table-column prop="goodsId" label="ID" />-->
+    <!--  <el-table-column prop="goodsName" label="货物名称"  />-->
+    <!--  <el-table-column prop="purchasingCount" label="货物数量" />-->
+    <!--  <el-table-column fixed="right" label="操作" width="120">-->
+    <!--    <template #default="scope">-->
+    <!--      <el-button link type="primary" size="small" @click.prevent="deleteRow(scope.$index)">移除</el-button>-->
+    <!--    </template>-->
+    <!--  </el-table-column>-->
+    <!--</el-table>-->
+    <!--<el-button class="mt-4" style="width: 100%" @click="onAddItem">添加货物</el-button>-->
+    <!--<el-button @click="uploadContractMsg" type="danger" class="bnt01">提交合同</el-button>-->
+  </el-dialog>
+  <!--展示图片放大-->
+  <el-dialog v-model="picVisible" title="合同图片">
+    <!--这样使用style来设置宽就可以撑满这个el-dialog了-->
+    <img :src="picture" :alt="'合同图片'" style="width: 100%">
+  </el-dialog>
 </template>
 
 <script setup lang="ts">
 import { onBeforeMount, ref } from 'vue'
-import { getAllContract } from '../../../api/contract'
+import { getAllContract, IContract } from '../../../api/contract'
 import { errorInfo, successInfo } from '../../../api/message'
-import { getEmployeeById } from '../../../api/employee'
-import { getClientById } from '../../../api/client'
-
-interface IContract {
-  id: number
-  createdAt: string
-  updatedAt: string
-  clientId: number
-  userId: number
-  totalAmount: number
-  contractPic: string
-  contractState: number
-}
-interface IEmployee {
-  id: number
-  createdAt: string
-  updatedAt: string
-  username: string
-  phoneNumber: string
-  email: string
-  identity: number
-  employeeName: string
-}
-interface IClient {
-  id: number
-  createdAt: string
-  updatedAt: string
-  phoneNumber: string
-  email: string
-  clientName: string
-}
+import { getEmployeeById, IEmployee } from '../../../api/employee'
+import { getClientById, IClient } from '../../../api/client'
 
 const contractList = ref<IContract[]>([])
 const empInfo = ref<IEmployee>({
-  "id": 0,
-  "createdAt": "",
-  "updatedAt": "",
-  "username": "",
-  "phoneNumber": "",
-  "email": "",
-  "identity": -1,
-  "employeeName": ""
+  id: 0,
+  createdAt: "",
+  updatedAt: "",
+  username: "",
+  phoneNumber: "",
+  email: "",
+  identity: -1,
+  employeeName: ""
 })
 const cliInfo = ref<IClient>({
-  "id": 0,
-  "createdAt": "",
-  "updatedAt": "",
-  "phoneNumber": "",
-  "email": "",
-  "clientName": ""
+  id: 0,
+  createdAt: "",
+  updatedAt: "",
+  phoneNumber: "",
+  email: "",
+  clientName: ""
 })
 const contractState = ref<{value: number, label: string}>({value: -1, label: '全部合同'})
 const cliVisible = ref<boolean>(false)
 const empVisible = ref<boolean>(false)
 const stateVisible = ref(false)
+const updateVisible = ref<boolean>(false)
+const contract = ref<IContract>({
+  id: 0,
+  createdAt: '',
+  updatedAt: '',
+  clientId: 0,
+  userId: 0,
+  totalAmount: 0,
+  contractPic: '',
+  contractState: 0
+})
+const picture = ref<string>('')
+const picVisible = ref<boolean>(false)
+const clientList = ref<IClient[]>([])
+const employeeList = ref<IEmployee[]>([])
 
+// 获取合同列表
 function getContractList(f: Function) {
   getAllContract().then(res => {
     if (res.code !== 200) {
@@ -156,6 +188,7 @@ function getContractList(f: Function) {
     console.log(err)
   })
 }
+// 获取销售员工信息 By ID
 function getEmpInfoById(empId: number, f: Function) {
   getEmployeeById(empId).then(res => {
     if (res.code !== 200) {
@@ -169,6 +202,7 @@ function getEmpInfoById(empId: number, f: Function) {
     console.log(err)
   })
 }
+// 获取客户信息    By ID
 function getCliInfoById(cliId: number, f: Function) {
   getClientById(cliId).then(res => {
     if (res.code !== 200) {
@@ -203,7 +237,25 @@ function searchContract() {
     })
   }
 }
+function showContractUpdate(c: IContract) {
+  contract.value = {
+    id: c.id,
+    createdAt: c.createdAt,
+    updatedAt: c.updatedAt,
+    clientId: c.clientId,
+    userId: c.userId,
+    totalAmount: c.totalAmount,
+    contractPic: c.contractPic,
+    contractState: c.contractState
+  }
+  updateVisible.value = true
+}
+function showBigImg(img: string) {
+  picture.value = img
+  picVisible.value = true
+}
 
+// 生命周期函数
 onBeforeMount(()=>{
   getContractList(()=>{})
 })

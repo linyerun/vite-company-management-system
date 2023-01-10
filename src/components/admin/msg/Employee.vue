@@ -94,20 +94,20 @@ import {ref, onBeforeMount} from 'vue'
 const employeeList = ref<IEmployee[]>([])
 // 员工新增
 const employeeData = ref<IEmployeeData>({
-  "email": "",
-  "employeeName": "",
-  "password": "",
-  "phoneNumber": "",
-  "username": ""
+  email: "",
+  employeeName: "",
+  password: "",
+  phoneNumber: "",
+  username: ""
 })
 // 员工更新
 const employeeUpdateData = ref<IEmployeeUpdateData>({
-  "email": "",
-  "employeeName": "",
-  "id": 0,
-  "password": "",
-  "phoneNumber": "",
-  "username": ""
+  email: "",
+  employeeName: "",
+  id: 0,
+  password: "",
+  phoneNumber: "",
+  username: ""
 })
 // 员工搜索
 const employeeSearchData = ref<{employeeName: string}>({
@@ -186,7 +186,11 @@ const cancelUpdate = () => {
 }
 const sureUpdate = () => {
   // cancelUpdate 是把数据初始化回去
-  updateEmployeeData(()=>{cancelUpdate()})
+  updateEmployeeData(()=>{
+    getEmployeeByName(() => {
+      cancelUpdate()
+    })
+  })
 }
 //  ==> 新增
 const showInsertForm = () => {
@@ -235,7 +239,6 @@ const sureSearch = () => {
     cancelSearch()
   }, employeeSearchData.value.employeeName)
 }
-
 
 // 生命周期函数
 onBeforeMount(() => {

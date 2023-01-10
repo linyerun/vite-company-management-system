@@ -1,5 +1,16 @@
 import request from "../utils/request"
 
+export interface IContract {
+    id: number
+    createdAt: string
+    updatedAt: string
+    clientId: number
+    userId: number
+    totalAmount: number
+    contractPic: string
+    contractState: number
+}
+
 export interface IContractData {
     clientId: number
     contractPic: string

@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     Contract: typeof import('./src/components/admin/msg/Contract.vue')['default']
     ContractRecord: typeof import('./src/components/admin/msg/ContractRecord.vue')['default']
     ContractState: typeof import('./src/components/employee/ContractState.vue')['default']
+    ContractUpdate: typeof import('./src/components/admin/msg/ContractUpdate.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
