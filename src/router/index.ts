@@ -13,6 +13,9 @@ import Contract from '../components/admin/msg/Contract.vue'
 import Sum from '../components/admin/data/Sum.vue'
 import GoodsSum from '../components/admin/data/GoodsSum.vue'
 import ContractRecord from '../components/admin/msg/ContractRecord.vue'
+import DispatchBill from '../components/admin/list/DispatchBill.vue'
+import PurchaseOrder from '../components/admin/list/PurchaseOrder.vue'
+import AddGoods from '../components/admin/list/AddGoods.vue'
 
 const routes = [
   {
@@ -92,6 +95,21 @@ const routes = [
         path: 'contractRecord',
         name: 'ContractRecord',
         component: ContractRecord
+      },
+      {
+        path: 'dispatchBill',
+        name: 'DispatchBill',
+        component: DispatchBill
+      },
+      {
+        path: 'purchaseOrder',
+        name: 'PurchaseOrder',
+        component: PurchaseOrder
+      },
+      {
+        path: 'addGoods',
+        name: 'AddGoods',
+        component: AddGoods
       }
     ]
   }

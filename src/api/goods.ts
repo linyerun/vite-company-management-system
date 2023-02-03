@@ -14,6 +14,12 @@ export interface IGoods {
   unitPrice: number
 }
 
+export interface IGoodsInfo {
+  goodsCount: number
+  goodsName: string
+  unitPrice: number
+}
+
 export function getAllGoods() {
   return request({
     url: '/goods/getAll',
@@ -25,5 +31,13 @@ export function getGoodsSumById(goodsId: number) {
   return request({
     url: `/goods/getSum/${goodsId}`,
     method: 'get'
+  })
+}
+
+export function postGoodsInfo(goodsInfo: IGoodsInfo) {
+  return request({
+    url: `/goods/post`,
+    method: 'post',
+    data: goodsInfo
   })
 }

@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AddGoods: typeof import('./src/components/admin/list/AddGoods.vue')['default']
     Admin: typeof import('./src/components/admin/index.vue')['default']
     Aside: typeof import('./src/components/admin/Aside.vue')['default']
     Client: typeof import('./src/components/admin/msg/Client.vue')['default']
@@ -15,6 +16,7 @@ declare module '@vue/runtime-core' {
     ContractRecord: typeof import('./src/components/admin/msg/ContractRecord.vue')['default']
     ContractState: typeof import('./src/components/employee/ContractState.vue')['default']
     ContractUpdate: typeof import('./src/components/admin/msg/ContractUpdate.vue')['default']
+    DispatchBill: typeof import('./src/components/admin/list/DispatchBill.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDialog: typeof import('element-plus/es')['ElDialog']
@@ -45,6 +47,7 @@ declare module '@vue/runtime-core' {
     Login: typeof import('./src/components/common/login.vue')['default']
     Out: typeof import('./src/components/store/Out.vue')['default']
     Performance: typeof import('./src/components/employee/Performance.vue')['default']
+    PurchaseOrder: typeof import('./src/components/admin/list/PurchaseOrder.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Store: typeof import('./src/components/store/index.vue')['default']

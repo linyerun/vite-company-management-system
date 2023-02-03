@@ -19,8 +19,9 @@
         </el-icon>
         <span>进发货管理</span>
       </template>
-      <el-menu-item index="/inOrder">进货单处理</el-menu-item>
-      <el-menu-item index="/outOrder">发货单处理</el-menu-item>
+      <el-menu-item index="/admin/purchaseOrder">进货单生成</el-menu-item>
+      <el-menu-item index="/admin/dispatchBill">发货单处理</el-menu-item>
+      <el-menu-item index="/admin/addGoods">新增&nbsp;&nbsp;&nbsp;货物</el-menu-item>
     </el-sub-menu>
     <el-sub-menu index="3">
       <template #title>

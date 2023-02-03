@@ -5,6 +5,13 @@ interface IPostData {
   courierNumber: string
 }
 
+export interface IDispatchBillInfo {
+  contractId: number
+  goodsCount: number
+  goodsId: number
+  purchasingGoodsId: number
+}
+
 export function getIngDispatchBill() {
   return request({
     url: '/dispatchBill/get',
@@ -17,5 +24,13 @@ export function postCourierNumber(dispatchBillId: number, postData: IPostData) {
     url: `/dispatchBill/postCourierNumber/${dispatchBillId}`,
     method: 'post',
     data: postData
+  })
+}
+
+export function generateDispatchBill(dispatchBillInfo: IDispatchBillInfo) {
+  return request({
+    url: `/dispatchBill/post`,
+    method: 'post',
+    data: dispatchBillInfo
   })
 }
