@@ -81,3 +81,25 @@ export function postContract(contract: IContractData) {
         data: contract
     })
 }
+
+export function updateClient(cliId: number, contractId: number) {
+    return request({
+        url: `/contract/update/client/${cliId}/${contractId}`,
+        method: 'put',
+    })
+}
+
+export function updateEmployee(empId: number, contractId: number) {
+    return request({
+        url: `/contract/update/employee/${empId}/${contractId}`,
+        method: 'put',
+    })
+}
+
+export function updatePicture(contractId: number, picURL: string) {
+    return request({
+        url: `/contract/update/pic/${contractId}`,
+        method: 'put',
+        data: {url: picURL}
+    })
+}

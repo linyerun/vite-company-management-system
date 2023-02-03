@@ -1,5 +1,14 @@
 import request from '../utils/request'
 
+export interface IClient {
+  id: number
+  createdAt: string
+  updatedAt: string
+  phoneNumber: string
+  email: string
+  clientName: string
+}
+
 interface IClientInfo {
   clientName: string
   email: string
@@ -45,13 +54,4 @@ export function getAllClients() {
     url: '/client/getClients',
     method: 'get'
   })
-}
-
-export interface IClient {
-  id: number
-  createdAt: string
-  updatedAt: string
-  phoneNumber: string
-  email: string
-  clientName: string
 }

@@ -27,7 +27,7 @@
       </el-form-item>
     </el-form>
     <el-table :data="goodsData" style="width: 100%" max-height="250">
-      <el-table-column prop="goodsId" label="ID" />
+      <el-table-column prop="goodsId" label="货物ID" />
       <el-table-column prop="goodsName" label="货物名称"  />
       <el-table-column prop="purchasingCount" label="货物数量" />
       <el-table-column fixed="right" label="操作" width="120">
@@ -39,7 +39,7 @@
     <el-button class="mt-4" style="width: 100%" @click="onAddItem">添加货物</el-button>
     <el-button @click="uploadContractMsg" type="danger" class="bnt01">提交合同</el-button>
   </div>
-  <el-dialog v-model="goodsMsgVisible" title="Shipping address">
+  <el-dialog v-model="goodsMsgVisible" title="商品信息表">
     <el-form :model="goodsMsg">
       <el-form-item label="货物名称" :label-width="'250'">
         <el-select v-model="goodsMsg.goodsId" >
@@ -67,7 +67,6 @@ import { IEmployee, getEmployees} from '../../../api/employee'
 import {IContractData, postContract} from '../../../api/contract'
 import { getAllGoods, IGoods } from '../../../api/goods'
 import { onBeforeMount, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import {errorInfo, successInfo} from '../../../api/message'
 import { baseURL } from '../../../api/oss'
 
