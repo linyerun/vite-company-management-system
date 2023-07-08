@@ -122,7 +122,7 @@ const goodsInfo = ref<IGoodsInfo>({
 })
 const dataInfo = ref<IDataInfo>({
   purchaseOrderId: -1,
-  unitPrice: -1,
+  unitPrice: 0,
   commentInfo: ''
 })
 const visibleGoodsInfo = ref<boolean>(false)
@@ -196,7 +196,7 @@ const reset = () => {
   goodsCount = 0
   dataInfo.value = {
     purchaseOrderId: -1,
-    unitPrice: -1,
+    unitPrice: 0,
     commentInfo: ''
   }
 }

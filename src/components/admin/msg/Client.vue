@@ -2,7 +2,7 @@
   <div class="container">
     <div class="d1">
       <el-button type="primary" @click="showAddClient">新增</el-button>
-      <el-button type="primary" @click="searchFormVisible = true">搜索</el-button>
+      <el-button type="primary" @click="showSearch">搜索</el-button>
     </div>
     <el-table :data="clientsInfo" border style="width: 100%">
       <el-table-column prop="id" label="客户ID" />
@@ -12,7 +12,7 @@
       <el-table-column label="操作">
         <template #default="{ row }">
           <el-button size="small" @click="showUpdateClientForm(row)" type="success">修改</el-button>
-          <el-button size="small" @click="showClientSum(row.id)" type="danger">销售总额</el-button>
+          <el-button size="small" @click="showClientSum(row.id)" type="danger">消费总额</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -82,6 +82,15 @@ const clientSum = ref<number>(0)
 const formVisible = ref<boolean>(false)
 const searchFormVisible = ref<boolean>(false)
 const clientSumVisible = ref<boolean>(false)
+
+
+// 展示搜索框
+function showSearch() {
+  searchFormVisible.value = true
+  clientData.value.phoneNumber = ''
+  clientData.value.clientName = ''
+  clientData.value.email = ''
+}
 
 // 后台接口封装
 const getClientsInfo = (f: Function, phoneNumber?: string, email?: string, clientName?: string) => {

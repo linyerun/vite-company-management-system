@@ -312,7 +312,7 @@ onBeforeMount(()=>{
 </style>
 
 <style>
-.avatar-uploader .el-upload {
+.avatar-uploader {
   border: 1px dashed var(--el-border-color);
   border-radius: 6px;
   cursor: pointer;
@@ -321,15 +321,15 @@ onBeforeMount(()=>{
   transition: var(--el-transition-duration-fast);
 }
 
-.avatar-uploader .el-upload:hover {
+.avatar-uploader /*.el-upload:hover*/ {
   border-color: var(--el-color-primary);
 }
 
-.el-icon.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  text-align: center;
-}
+/*.el-icon.avatar-uploader-icon {*/
+/*  font-size: 28px;*/
+/*  color: #8c939d;*/
+/*  width: 178px;*/
+/*  height: 178px;*/
+/*  text-align: center;*/
+/*}*/
 </style>
